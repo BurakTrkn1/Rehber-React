@@ -20,6 +20,8 @@ function Header({
     setTextM(text);
       setPersonData(copyPersondata);
       setCopyPersondata(personData);
+      console.log(personData);
+      console.log();
     personData = personData.filter((person) => person.name.includes(text));
     if(text==""){
       personData(copyPersondata);
@@ -38,6 +40,7 @@ function Header({
   const personNew = () => {
     setModal(true);
     setModalShow(true);
+    setTextM();
   };
   return (
     <div>

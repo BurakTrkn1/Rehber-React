@@ -42,8 +42,17 @@ function App() {
               }
 
             />
-            
-            <Route path="/Personss" element={<Personss/>} />
+            {/* <Route index element={
+                    <Personss   personData={personData}                      
+                    setPersonData={setPersonData}
+                    copyPersondata={copyPersondata}
+                        setCopyPersondata={setCopyPersondata}/>
+            }
+            /> */}
+            <Route path="/Personss" element={<Personss   personData={personData}  
+        setPersonData={setPersonData}
+        copyPersondata={copyPersondata}
+        setCopyPersondata={setCopyPersondata}/>} />
           </Routes>
         </BrowserRouter>
       </GlobalProvider>

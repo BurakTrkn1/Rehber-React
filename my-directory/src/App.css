@@ -40,3 +40,15 @@
 #edt{
   margin-right: 25px;
 }
+.person{
+  justify-content: space-around;
+  margin-left: 45rem;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: black;
+  text-align: center;
+  display: flex;
+}
+
+

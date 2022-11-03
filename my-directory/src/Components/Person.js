@@ -13,50 +13,52 @@ export default function Person({setEditModal,personData,setPersonData,modal,setM
   //  const [surname,setSurname]=useContext(GlobalContext);
   //  const [phone,setPhone]=useContext(GlobalContext);
   //  const [gmail,setGmail]=useContext(GlobalContext);
-
-   const handell=(id)=>{
+  
+  const handell=(id)=>{
     setPersonData(personData.filter((person)=> id != person.id))
-   }
-   const Edit=(id)=>{
-       setModal(true);
-       setModalshow(true);
+  }
+  const Edit=(id)=>{
+    setModal(true);
+    setModalshow(true);
        setPersonId(id);
        setCount(count)
        console.log(count);
    }
    
-    
-    return (
-    <div>
+   
+   return (
+     <div>
          {modalshow &&(
-          <Modals
-         modal={modal}
-          setModal={setModal}
-          personData={personData}
-             setPersonData={setPersonData}
-             setPersonId={setPersonId}
-             PersonId={personId}
-             count={count}
-             setCount={setCount}
-
-
-            value1={
-              personData.filter((person)=>person.id=== personId)[0]?.name
+           <Modals
+           modal={modal}
+           setModal={setModal}
+           personData={personData}
+           setPersonData={setPersonData}
+           setPersonId={setPersonId}
+           PersonId={personId}
+           count={count}
+           setCount={setCount}
+           
+           
+           value1={
+             personData.filter((person)=>person.id=== personId)[0]?.name
+            }
+            value2={
+              personData.filter((person)=>person.id=== personId)[0]?.surname
+              
               }
-           value2={
-               personData.filter((person)=>person.id=== personId)[0]?.surname
-        
+              value3={
+                personData.filter((person)=>person.id=== personId)[0]?.phone
+              
               }
-            value3={
-                 personData.filter((person)=>person.id=== personId)[0]?.phone
-        
-                }
-           value4={
+              value4={
                 personData.filter((person)=>person.id=== personId)[0]?.gmail
-                  }
-                 />
-    
-          )}{" "}
+              }
+              />
+              
+              )}{" "}
+             <p className='nvl'> <NavLink to='/Personss' >Personss</NavLink></p>
+
         <table className="table table-dark">
           <thead>
             <tr>
@@ -70,7 +72,7 @@ export default function Person({setEditModal,personData,setPersonData,modal,setM
           </thead>
           <tbody>
             {personData.map((person,ind)=>{
-                  return(
+              return(
                 <tr key={person.id}>
                   <th scope='row'>{ind + 1}</th>
                      <td onClick={()=>(ind)}>{person.name}</td>
@@ -85,16 +87,16 @@ export default function Person({setEditModal,personData,setPersonData,modal,setM
                      </td>
                 </tr>
                 );
-            })}
+              })}
           </tbody>
         </table>
         <NavLink to="/Personss"></NavLink>
       </div>
     );
   }
-    
-
-    
-   
-
-
+  
+  
+  
+  
+  
+  

@@ -22,19 +22,19 @@ const schema = yup.object().shape({
   surname: yup.string().required("you did not enter a surname"),
   phone: yup
     .string()
-    .typeError("rakam girmelisiniz")
+    .typeError("You must enter numbers")
 
     .matches(
       /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
-      "adam gibitelefon gir"
+      "your phone number must be more than 11 characters"
     ),
   // .required("phone must be no more than 11 characters"),
   gmail: yup
     .string()
-    .required("bos olamaz")
+    .required("enter your email correctly")
     .matches(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      "adam gibi mail gir"
+      "enter your email correctly"
     ),
 });
 function Modals({
@@ -53,9 +53,10 @@ function Modals({
   setCount,
 }) {
   const toggle = () => setModal(!modal);
-  const [textM, setTextM] = useState([]);
+  const [data, dataText] = useState([]);
   const {
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm({
@@ -64,6 +65,7 @@ function Modals({
 
   const onSubmitt = (data) => {
     console.log("onSumbit");
+    clearstate();
     if (value1 === undefined) {
       personData = [
         ...personData,
@@ -88,41 +90,61 @@ function Modals({
     }
     setPersonData(personData);
 
-    setTextM({
-      name: "",
+    dataText({
+      dataname: "",
       surname: "",
       phone: "",
       gmail: "",
     });
     setCopyPersondata(personData);
   };
-  const onChange = (text, name1) => {
-    switch (name1) {
-      case "name":
-        setTextM((pres) => ({ ...pres, name: text }));
-        break;
-      case "surname":
-        setTextM((pres) => ({ ...pres, surname: text }));
-        break;
-      case "phone":
-        setTextM((pres) => ({ ...pres, phone: text }));
-        break;
-      case "gmail":
-        setTextM((pres) => ({ ...pres, gmail: text }));
-        break;
-      default:
-        break;
+  const clearstate=()=>{
+    reset();
+     toggle();
+     {
+      errors.name="";
+     }
+     {
+      errors.surname="";
+     }
+     {
+      errors.phone="";
+     }
+     {
+      errors.gmail="";
+     }
+  
+  
     }
-  };
+
+  
+  // const onChange = (text, name1) => {
+  //   switch (name1) {
+  //     case "name":
+  //       setTextM((pres) => ({ ...pres, name: text }));
+  //       break;
+  //     case "surname":
+  //       setTextM((pres) => ({ ...pres, surname: text }));
+  //       break;
+  //     case "phone":
+  //       setTextM((pres) => ({ ...pres, phone: text }));
+  //       break;
+  //     case "gmail":
+  //       setTextM((pres) => ({ ...pres, gmail: text }));
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
   useEffect(() => {
     value1 != undefined
-      ? setTextM({
+      ? dataText({
           name: value1,
           surname: value2,
           phone: value3,
           gmail: value4,
         })
-      : setTextM({
+      : dataText({
           name: "",
           surname: "",
           phone: "",
@@ -137,7 +159,7 @@ function Modals({
           <ModalHeader toggle={toggle}>Rehber</ModalHeader>
           <ModalBody>
             <Container>
-              <Row xs={3}>
+              <Row xs={1}>
                 <Col className="">
                   {/* <Controller></Controller> */}
                   <Label for="input-name"> Name</Label>
@@ -146,6 +168,7 @@ function Modals({
                     name="name"
                     render={({ field: { onChange, onBlur, value } }) => (
                       <Input
+                      defaultValue={value1 !== undefined ? value1:""}
                         value={value}
                         onChange={onChange}
                         onBlur={onBlur}
@@ -162,6 +185,8 @@ function Modals({
                     name="surname"
                     render={({ field: { onChange, onBlur, value, ref } }) => (
                       <Input
+                      defaultValue={value2 !== undefined ? value2:""}
+
                         value={value}
                         onChange={onChange}
                         onBlur={onBlur}
@@ -180,6 +205,8 @@ function Modals({
                     name="phone"
                     render={({ field: { onChange, onBlur, value, ref } }) => (
                       <Input
+                      defaultValue={value3 !== undefined ? value3:""}
+
                         value={value}
                         onChange={onChange}
                         onBlur={onBlur}
@@ -196,6 +223,8 @@ function Modals({
                     name="gmail"
                     render={({ field: { onChange, onBlur, value } }) => (
                       <Input
+                      defaultValue={value4 !== undefined ? value4:""}
+
                         value={value}
                         onChange={onChange}
                         onBlur={onBlur}
