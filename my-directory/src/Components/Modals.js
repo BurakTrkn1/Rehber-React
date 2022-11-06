@@ -15,7 +15,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
-import { type } from "@testing-library/user-event/dist/type";
+import "../../src/App.css"
 
 const schema = yup.object().shape({
   name: yup.string().required("you did not enter a name"),
@@ -240,7 +240,7 @@ function Modals({
             </Container>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" type="sumbit">
+            <Button color="primary" type="submit">
               {value1 == undefined ? "Add" : "Edit"}
             </Button>{" "}
             <Button color="secondary" onClick={toggle}>

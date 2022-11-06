@@ -50,5 +50,7 @@
   text-align: center;
   display: flex;
 }
-
+.error{
+  color: red;
+}
 

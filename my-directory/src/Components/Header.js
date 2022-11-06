@@ -12,25 +12,19 @@ function Header({
   setCopyPersondata,
   copyPersondata,
 }) {
-  const [textM, setTextM] = useState();
+  const [textM,setDatatext] = useState();
   const [modalShow, setModalShow] = useState(false);
   const [newPerson, setNewPerson] = useState([]);
   
-  const onChange = (text) => {
-    setTextM(text);
-      setPersonData(copyPersondata);
-      setCopyPersondata(personData);
-      console.log(personData);
-      console.log();
+  const onChange = (e,text) => {
+    setDatatext(text);
+    setPersonData(copyPersondata);
     personData = personData.filter((person) => person.name.includes(text));
-    if(text==""){
-      personData(copyPersondata);
-    }
-     else{
-       setCopyPersondata(personData);
-     }
+    text==""? setPersonData(personData) : setCopyPersondata (copyPersondata)
     if (personData.length == 0) {
+      setCopyPersondata(copyPersondata)
     }
+    setCopyPersondata(personData);
     // if(text=="")
     // {
     //   setPersonData(copyPersondata)
@@ -40,7 +34,7 @@ function Header({
   const personNew = () => {
     setModal(true);
     setModalShow(true);
-    setTextM();
+    setDatatext();
   };
   return (
     <div>
